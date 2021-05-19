@@ -1,3 +1,18 @@
-ul li {
-  list-style-type: georgian;
+.app-wrapper { 
+  margin: 0 auto;
+  display: grid;
+  width: 1000px; 
+  grid-template-areas:
+    "header header"
+    "navbar content";
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 1fr 9fr;
+  grid-gap: 5px;
+  margin-top: 10px;
+  
+}
+
+.app-wrapper-content {
+  grid-area: content;
+  background-color: rgb(180, 206, 255);
 }
