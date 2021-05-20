@@ -16,7 +16,7 @@ const Dialogs = (props) => {
                     <NavLink to="/dialogs/3"> Mage</NavLink>
                 </div>
                 <div className={style.dialog + ' ' + style.active}>
-                    <NavLink to={/dialogs/4}>Programmer</NavLink>
+                    <NavLink to="/dialogs/4">Programmer</NavLink>
                 </div>
             </div>
             <div className={style.messages}>

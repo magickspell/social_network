@@ -3,6 +3,10 @@
     grid-template-columns: 2fr 10fr;
 }
 
+.dialog {
+
+}
+
 .dialogsItems {
     padding: 10px;
 }
