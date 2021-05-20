@@ -7,12 +7,22 @@
 
 }
 
+.dialog a {
+    text-decoration: none;
+    color: black;
+}
+
+.dialog a.activeLink {
+    color: gold;
+}
+
 .dialogsItems {
     padding: 10px;
 }
 
 .dialogsItems .active {
     color: gold;
+    text-decoration: none;
 }
 
 .messages {
