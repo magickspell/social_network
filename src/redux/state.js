@@ -1,5 +1,4 @@
-
-
+/*data create first in state*/
 let state = {
     profilePage: {
         messages_post_Data: [
@@ -24,6 +23,17 @@ let state = {
             {id: 4, message: "yes"}
         ]
     }
+}
+
+export let addPost = (postMessage) => {
+    /*debugger;*/
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        like: 0
+    };
+
+    state.profilePage.messages_post_Data.push(newPost);
 }
 
 export default state;
