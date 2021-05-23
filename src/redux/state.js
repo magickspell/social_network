@@ -51,6 +51,6 @@ export let updateNewPostText = (newText) => {
 
 export const subscribe = (observer) => {
     rerenderEntireTree = observer
-}
+} /*грубо говоря сюда прилетает ререндер из индекса и подменяет его через обсервер*/
 
 export default state;
