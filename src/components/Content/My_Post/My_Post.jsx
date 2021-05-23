@@ -2,13 +2,11 @@ import React from 'react';
 import style from './My_Post.module.css';
 import Post from './Post/Post.jsx'
 
-const my_post = () => {
+const My_Post = (props) => {
 
-    let messagesData = [
-        {id: 1, message: "hello", like: 3},
-        {id: 1, message: "hi", like: 2},
-        {id: 1, message: "leatherman", like: 0}
-        ];
+
+
+    let post_messages = props.messages_post_Data.map(post_message => <Post message={post_message.message} like={post_message.like}/> )
 
     return (
         <div className={style.postsBlock}>
@@ -20,12 +18,10 @@ const my_post = () => {
                 <button>Add post</button>
             </div>
             <div className={style.posts}>
-                <Post message={messagesData[0].message} like={messagesData[0].like}/>
-                <Post message={messagesData[1].message} like={messagesData[1].like}/>
-                <Post message={messagesData[2].message} like={messagesData[2].like}/>
+                {post_messages}
             </div>
         </div>
     );
 }
 
-export default my_post;
+export default My_Post;
