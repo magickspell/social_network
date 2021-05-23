@@ -1,11 +1,14 @@
 /*data create first in state*/
+import {rerenderEntireTree} from "../render";
+
 let state = {
     profilePage: {
         messages_post_Data: [
             {id: 1, message: "hello", like: 3},
             {id: 1, message: "hi", like: 2},
             {id: 1, message: "leatherman", like: 0}
-        ]
+        ],
+        newPostText: "flux samurai"
     },
 
     messagesPage: {
@@ -24,16 +27,23 @@ let state = {
         ]
     }
 }
+window.state = state;
 
-export let addPost = (postMessage) => {
-    /*debugger;*/
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         like: 0
     };
 
     state.profilePage.messages_post_Data.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
 }
 
 export default state;
