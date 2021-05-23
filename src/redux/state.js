@@ -1,6 +1,8 @@
+/*call back observera*/
+let rerenderEntireTree = () => {
+    console.log('state changed')
+}
 /*data create first in state*/
-import {rerenderEntireTree} from "../render";
-
 let state = {
     profilePage: {
         messages_post_Data: [
@@ -27,6 +29,7 @@ let state = {
         ]
     }
 }
+
 window.state = state;
 
 export let addPost = () => {
@@ -44,6 +47,10 @@ export let addPost = () => {
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer
 }
 
 export default state;
