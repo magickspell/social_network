@@ -31,7 +31,7 @@ let store = {
     _callSubscriber() {
         console.log('state changed')
     },
-    addPost() {
+/*    addPost() {
         let newPost = {
             id: 5,
             message: this._state.profilePage.newPostText,
@@ -45,10 +45,25 @@ let store = {
     updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
-    },
+    },*/
     subscribe(observer) {
         this._callSubscriber = observer
-    } /*грубо говоря сюда прилетает ререндер из индекса и подменяет его через обсервер*/
+    }, /*грубо говоря сюда прилетает ререндер из индекса и подменяет его через обсервер*/
+    dispatch(action) { //types add-post and so on
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                like: 0
+            };
+            this._state.profilePage.messages_post_Data.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+        }
+    }
 }
 
 window.store = store;
