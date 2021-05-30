@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
@@ -17,7 +17,10 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree); /*example of callback*/
+store.subscribe(() => {
+    let state = store.getState();
+    rerenderEntireTree(state);
+}); /*example of callback*/
 
 
 

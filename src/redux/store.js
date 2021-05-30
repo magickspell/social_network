@@ -1,3 +1,5 @@
+import profileReducer from "./profile-reducer";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
@@ -13,7 +15,6 @@ let store = {
             ],
             newPostText: "flux samurai"
         },
-
         messagesPage: {
             dialogsData: [
                 {id: 1, name: "Shomen"}, /*это объект dialog*/
@@ -29,7 +30,8 @@ let store = {
                 {id: 4, message: "yes"}
             ],
             newMessageBody: ''
-        }
+        },
+        sidebar: {}
     },
     getState() {
         return this._state;
@@ -42,29 +44,13 @@ let store = {
         this._callSubscriber = observer
     }, /*грубо говоря сюда прилетает ререндер из индекса и подменяет его через обсервер*/
     dispatch(action) { //types add-post and so on
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                like: 0
-            };
-            this._state.profilePage.messages_post_Data.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-                this._state.profilePage.newPostText = action.newText;
-                this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.messagesPage.newMessageBody = action.body;
-            this._callSubscriber(this._state);
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.messagesPage.newMessageBody;
-            this._state.messagesPage.newMessageBody = '';
-            this._state.messagesPage.messagesData.push({id: 6, message: body});
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = profileReducer(this._state.messagesPage, action);
+        this._state.sidebar = profileReducer(this._state.sidebar, action);
+        this._callSubscriber(this._state);
     }
 }
+
 
 export const addPostActionCreater = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreater = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
