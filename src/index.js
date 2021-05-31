@@ -11,7 +11,7 @@ let rerenderEntireTree = (state) => {
         <BrowserRouter>
             <App state={state}
                  dispatch={store.dispatch.bind(store)}
-            store={store}/>
+                 store={store}/>
         </BrowserRouter>, document.getElementById('root'));
 }
 
@@ -21,7 +21,6 @@ store.subscribe(() => {
     let state = store.getState();
     rerenderEntireTree(state);
 }); /*example of callback*/
-
 
 
 // If you want to start measuring performance in your app, pass a function

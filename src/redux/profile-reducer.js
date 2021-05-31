@@ -4,8 +4,8 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 let initialState = {
     messages_post_Data: [
         {id: 1, message: "hello", like: 3},
-        {id: 1, message: "hi", like: 2},
-        {id: 1, message: "leatherman", like: 0}
+        {id: 2, message: "hi", like: 2},
+        {id: 3, message: "leatherman", like: 0}
     ],
     newPostText: "flux samurai"
 };
@@ -31,5 +31,8 @@ const profileReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, nexText: text});
 
 export default profileReducer;
