@@ -9,7 +9,7 @@ const Profile = (props) => {
     return (
         <div className={style.content}>
             <ProfileInfo/>
-            <My_PostContainer store={props.store} /*messages_post_Data={props.profilePage.messages_post_Data}
+            <My_PostContainer /*messages_post_Data={props.profilePage.messages_post_Data}
                      newPostText={props.profilePage.newPostText}
                      dispatch={props.dispatch}*//>
         </div>
