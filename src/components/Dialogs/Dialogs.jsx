@@ -19,7 +19,7 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-    debugger
+
     let state = props.dialogsData;
 
     let newMesssageElement = React.createRef();
@@ -32,6 +32,7 @@ const Dialogs = (props) => {
     let dialogs = props.messagesPage.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
     let messages = props.messagesPage.messagesData.map(message => <Message message={message.message} id={message.id}/>);
     let newMessageBody = props.messagesPage.newMessageBody;
+
     let onSendMessageClick = () => {
         props.SendMessage();
     };
