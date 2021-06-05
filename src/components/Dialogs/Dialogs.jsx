@@ -29,8 +29,8 @@ const Dialogs = (props) => {
         alert(text);
     }
 
-    let dialogs = props.messagesPage.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messages = props.messagesPage.messagesData.map(message => <Message message={message.message} id={message.id}/>);
+    let dialogs = props.messagesPage.dialogsData.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>);
+    let messages = props.messagesPage.messagesData.map(message => <Message message={message.message} key={message.id} id={message.id}/>);
     let newMessageBody = props.messagesPage.newMessageBody;
 
     let onSendMessageClick = () => {
