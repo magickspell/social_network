@@ -7,21 +7,22 @@ import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 
-let rerenderEntireTree = () => {
+/*let rerenderEntireTree = () => {*/
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
             <App />
             </Provider>
         </BrowserRouter>, document.getElementById('root'));
-}
+/*}*/
 
-rerenderEntireTree(store.getState());
+/*rerenderEntireTree(store.getState());
+rerenderEntireTree(); /!*DIMICH*!/*/
 
-store.subscribe(() => {
+/*store.subscribe(() => {
     let state = store.getState();
     rerenderEntireTree(state);
-}); /*example of callback*/
+}); /!*example of callback*!/*/
 
 
 // If you want to start measuring performance in your app, pass a function

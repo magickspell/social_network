@@ -6,32 +6,6 @@ import {connect} from "react-redux";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../redux/dialogs-reducer";
 
 
-/*const My_PostContainer = (props) => {
-
-    return (
-        <StoreContext.Consumer>
-            { (store) => {
-                let state = store.getState();
-                let addPost = () => {
-                    store.dispatch(addPostActionCreator());
-                }
-
-                let onPostChange = (text) => {
-                    let action = updateNewPostTextActionCreator(text);
-                    store.dispatch(action);
-                }
-
-                return <My_Post updateNewPostText={onPostChange}
-                                addPost={addPost}
-                                messages_post_Data={state.profilePage.messages_post_Data}
-                                newPostext={state.profilePage.newPostText}
-                />
-            }}
-        </StoreContext.Consumer>
-    );
-
-}*/
-
 const mapStateToProps = (state) => {
     return {
         messages_post_Data: state.profilePage.messages_post_Data,
