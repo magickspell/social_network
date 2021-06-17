@@ -22,7 +22,6 @@ let Users = (props) => {
                              }}>{p}</span>
             })}
         </div>
-        {/*<button onClick={this.getUsers}>get users</button>*/}
         {
             props.users.map(u => <div key={u.id}>
                 <span>
