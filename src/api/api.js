@@ -13,17 +13,11 @@ export const usersAPI = {
                 return response.data;
             });
     },
-    postFollow (id) {
-        return instance.post(`follow/${id}`) /*${u_id = 0} это заглушки под фоллоу запрос*/
-            .then(response => {
-                return response.data;
-            });
+    follow(userId){
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
     },
-    deleteUnfollow (currentPage = 1, pageSize = 10) {
-        return instance.delete(`follow/0`) /*${u_id = 0} это заглушки под фоллоу запрос*/
-            .then(response => {
-                return response.data;
-            });
+    unfollow(userId){
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
     }
 }
 

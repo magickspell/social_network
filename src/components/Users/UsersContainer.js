@@ -3,10 +3,7 @@ import {connect} from "react-redux";
 import {
     follow,
     setCurrentPage,
-    setUsers,
-    setTotalUsersCount,
-    toggleIsFetching,
-    unfollow, toggleFollowingProgress
+    unfollow, toggleFollowingProgress, getUsers
 } from "../../redux/users-reducer";
 import Users from "./Users.jsx";
 import Preloader from "../common/Preloader/Preloader";
@@ -15,22 +12,27 @@ import {usersAPI} from "../../api/api";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        /*this.props.toggleIsFetching(true);
 
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
-        });
+        });*/
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
+
+        this.props.getUsers(pageNumber, this.props.pageSize);
+
+/*        this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
+
         usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
-        });
+        });*/
 
     }
 
@@ -44,7 +46,6 @@ class UsersContainer extends React.Component {
                users={this.props.users}
                unfollow={this.props.unfollow}
                follow={this.props.follow}
-               toggleFollowingProgress={this.props.toggleFollowingProgress}
                followingInProgress={this.props.followingInProgress}
         />
         </>
@@ -63,4 +64,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress})(UsersContainer);
+export default connect(mapStateToProps,
+    {follow, unfollow, setCurrentPage,
+    toggleFollowingProgress, getUsers})(UsersContainer);
