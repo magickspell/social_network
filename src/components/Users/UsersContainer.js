@@ -8,6 +8,7 @@ import {
 import Users from "./Users.jsx";
 import Preloader from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
 
@@ -25,14 +26,6 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
 
         this.props.getUsers(pageNumber, this.props.pageSize);
-
-/*        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-        });*/
 
     }
 
@@ -64,6 +57,8 @@ let mapStateToProps = (state) => {
     }
 }
 
+let withRedirect = withAuthRedirect(UsersContainer);
+
 export default connect(mapStateToProps,
     {follow, unfollow, setCurrentPage,
-    toggleFollowingProgress, getUsers})(UsersContainer);
+    toggleFollowingProgress, getUsers})(withRedirect);
