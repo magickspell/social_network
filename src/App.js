@@ -9,6 +9,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Content/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import LoginPage from "./components/Login/Login";
 /*import {updateNewPostText} from "./redux/state";*/
 
 
@@ -29,6 +30,8 @@ const App = (props) => {
                     <Route path='/settings' component={Settings}/>
                     <Route path='/news' component={News}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
+                    <Route path='/login'
+                           render={() => <LoginPage />}/>
                 </div>
 
             </div>
