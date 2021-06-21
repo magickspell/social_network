@@ -24,14 +24,21 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
                            render={() => <DialogsContainer />}/>
+
                     <Route path='/profile/:userId?'
                            render={() => <ProfileContainer />}/>
+
                     <Route path='/music' component={Music}/>
+
                     <Route path='/settings' component={Settings}/>
+
                     <Route path='/news' component={News}/>
+
                     <Route path='/users' render={() => <UsersContainer />}/>
+
                     <Route path='/login'
                            render={() => <LoginPage />}/>
+
                 </div>
 
             </div>
