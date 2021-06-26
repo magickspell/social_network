@@ -3,6 +3,7 @@ import style from './Dialogs.module.css';
 import {NavLink, Redirect} from 'react-router-dom';
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import {Field, reduxForm} from "redux-form";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 const DialogItem = (props) => {
     let path = "/dialogs/" + props.id;
@@ -58,18 +59,19 @@ const Dialogs = (props) => {
             <div className={style.messages}>
                 {messages}
             </div>
-            <AddMessageFormRedux onSubmit={addNewMessage}/>
+            {/*<AddMessageFormRedux onSubmit={addNewMessage}/>*/}
+            <AddMessageForm onSubmit={addNewMessage}/>
         </div>
     );
 };
 
-const AddMessageForm = (props) => {
+/*const AddMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
         <div>
-            {/*<textarea ref={newMesssageElement}>new messege</textarea>*/}
+            {/!*<textarea ref={newMesssageElement}>new messege</textarea>*!/}
             <Field component="textarea" name="newMessageBody" placeholder="Enter your message"></Field>
-            {/*<textarea value={newMessageBody} placeholder='enter your message' onChange={onNewMessageChange}></textarea>*/}
+            {/!*<textarea value={newMessageBody} placeholder='enter your message' onChange={onNewMessageChange}></textarea>*!/}
         </div>
     <div>
         <button>send</button>
@@ -78,6 +80,6 @@ const AddMessageForm = (props) => {
     )
 }
 
-const AddMessageFormRedux = reduxForm({form: "dialogsAddMessageForm"})(AddMessageForm);
+const AddMessageFormRedux = reduxForm({form: "dialogsAddMessageForm"})(AddMessageForm);*/
 
 export default Dialogs;
