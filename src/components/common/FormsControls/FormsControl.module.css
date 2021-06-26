@@ -11,3 +11,9 @@
     color: red;
     background-color: antiquewhite;
 }
+
+.formSummaryError {
+    background-color:  antiquewhite;
+    padding: 5px;
+    color: darkred;
+}
