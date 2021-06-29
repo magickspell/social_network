@@ -6,6 +6,11 @@ import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 
 const My_Post = React.memo(props => {
+
+    /*shouldComponentUpdate(nextProps, nextState) {
+        return nextProps != this.props || nextState != this.state;
+        } this is for class components*/
+
     let postsElements = props.messages_post_Data.map(p => <Post message={p.message} like={p.like}/>);
 
     let newPostElement = React.createRef();
