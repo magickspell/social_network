@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
@@ -10,9 +10,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Content/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
-/*import {updateNewPostText} from "./redux/state";*/
 import {connect} from "react-redux";
-import {getAuthUserData} from "./redux/auth-reducer";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 
@@ -29,7 +27,6 @@ class App extends React.Component {
         }
 
         return (
-            <BrowserRouter>
                 <div className='app-wrapper'>
 
                     <HeaderContainer/>
@@ -54,7 +51,6 @@ class App extends React.Component {
                     </div>
 
                 </div>
-            </BrowserRouter>
         );
     }
 }

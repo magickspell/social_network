@@ -19,7 +19,8 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize);
         /*this.props.toggleIsFetching(true);
 
         usersAPI.requestUsers(this.props.currentPage, this.props.pageSize).then(data => {
