@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Content/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
@@ -15,6 +13,12 @@ import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {compose} from "redux";
 import store from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+/*import DialogsContainer from "./components/Dialogs/DialogsContainer";*/
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer.jsx"));
+/*import ProfileContainer from "./components/Content/ProfileContainer";*/
+const ProfileContainer = React.lazy(() => import("./components/Content/ProfileContainer"));
+/*suspense must be, to see loading div use slow 3g*/
 
 
 class App extends React.Component {
@@ -35,10 +39,15 @@ class App extends React.Component {
                     <Navbar/>
                     <div className='app-wrapper-content'>
                         <Route path='/dialogs'
-                               render={() => <DialogsContainer/>}/>
+                               render={withSuspense(DialogsContainer)}
+                        />
 
                         <Route path='/profile/:userId?'
-                               render={() => <ProfileContainer/>}/>
+                               render={() => {
+                                   return <Suspense fallback={<div>Loading...</div>}>
+                                   <ProfileContainer/>
+                                   </Suspense>
+                                   }}/>
 
                         <Route path='/music' component={Music}/>
 
