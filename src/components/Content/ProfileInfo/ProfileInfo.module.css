@@ -5,3 +5,13 @@
     max-width: 300px;
     max-height: 300px;
 }
+
+.contact {
+    padding-left: 15px;
+}
+
+.formSummaryError {
+    background-color:  antiquewhite;
+    padding: 5px;
+    color: darkred;
+}
