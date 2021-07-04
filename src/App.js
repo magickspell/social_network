@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
@@ -18,13 +18,24 @@ import {withSuspense} from "./hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer.jsx"));
 /*import ProfileContainer from "./components/Content/ProfileContainer";*/
 const ProfileContainer = React.lazy(() => import("./components/Content/ProfileContainer"));
+
 /*suspense must be, to see loading div use slow 3g*/
 
 
 class App extends React.Component {
 
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("some error occurred");
+
+    }
+
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -33,11 +44,15 @@ class App extends React.Component {
         }
 
         return (
-                <div className='app-wrapper'>
+            <div className='app-wrapper'>
 
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
+                <HeaderContainer/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+
+                    <Switch>
+                        <Route exact path="/" render={() => <Redirect to={"/profile"}/>}/>
+
                         <Route path='/dialogs'
                                render={withSuspense(DialogsContainer)}
                         />
@@ -45,9 +60,9 @@ class App extends React.Component {
                         <Route path='/profile/:userId?'
                                render={() => {
                                    return <Suspense fallback={<div>Loading...</div>}>
-                                   <ProfileContainer/>
+                                       <ProfileContainer/>
                                    </Suspense>
-                                   }}/>
+                               }}/>
 
                         <Route path='/music' component={Music}/>
 
@@ -57,11 +72,17 @@ class App extends React.Component {
 
                         <Route path='/users' render={() => <UsersContainer/>}/>
 
-                        <Route path='/login'
+                        <Route exact path='/login'
                                render={() => <LoginPage/>}/>
-                    </div>
+                        <Route path='/login/facebook'
+                               render={() => <div>FACEBOOK</div>}/>
+
+                        <Route path="*" render={() => <div>404 NOT FOUND</div>}/>
+                    </Switch>
 
                 </div>
+
+            </div>
         );
     }
 }
@@ -85,7 +106,7 @@ let AppContainer = compose(
 const SamuraiJSApp = (props) => {
     return <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
-            <AppContainer />
+            <AppContainer/>
         </Provider>
     </BrowserRouter>
 }
